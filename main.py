@@ -9,7 +9,6 @@ def read():
 
 if __name__ == '__main__':
     csv = read()
-    i = 28
     
     for s in csv.split(b'\r\n'):
         arr = re.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", s.decode('utf-8'))
