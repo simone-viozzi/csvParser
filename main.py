@@ -55,16 +55,13 @@ java.lang.String"""
     s = []
     for a in arr:
         s.append(a.replace("(", "").replace(")", "").replace("’", "").title().replace(" ", ""))
-    colName = []
+    dataName = []
     for a in s:
-        colName.append(a[:1].lower() + a[1:])
+        dataName.append(a[:1].lower() + a[1:])
     
-    dataType = dataType.split('\n')
+    dataType = dataType.replace("java.lang.", "").replace("com.example.progetto.", "").replace("StringArray", "ObjArray<String>").replace("FloatArray", "ObjArray<Float>").split('\n')
     
-    for d, c in zip(dataType, colName):
-        print("private " + d + " " + c + ";")
+    for d, c, t in zip(arr, dataName, dataType):
+        print("- " + d + " --> " + c + " (" + t + ")")
 
-    print("{", end="")
-    for c in dataType:
-        print('"' + c + '"' + ", ", end="")
-    print("}", end="")
+    
